@@ -1,0 +1,77 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class RockPaperScissors {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        Random random = new Random();
+
+        int userScore = 0;
+        int computerScore = 0;
+
+        System.out.println("     ROCK PAPER SCISSORS    ");
+
+        while (true) {
+
+            System.out.println("\nChoose your option:");
+            System.out.println("1. Rock");
+            System.out.println("2. Paper");
+            System.out.println("3. Scissors");
+            System.out.println("0. Exit");
+
+            System.out.print("\nEnter your choice: ");
+            int userChoice = scan.nextInt();
+
+            if (userChoice == 0) {
+                break;
+            }
+
+            if (userChoice < 1 || userChoice > 3) {
+                System.out.println("Invalid choice! Try again.");
+                continue;
+            }
+
+            int computerChoice = random.nextInt(3) + 1;
+
+            String[] choices = {"", "Rock", "Paper", "Scissors"};
+
+            System.out.println("\nYou chose: " + choices[userChoice]);
+            System.out.println("Computer chose: " + choices[computerChoice]);
+
+            if (userChoice == computerChoice) {
+
+                System.out.println("Result: It's a Draw!");
+
+            } else if (
+                (userChoice == 1 && computerChoice == 3) ||
+                (userChoice == 2 && computerChoice == 1) ||
+                (userChoice == 3 && computerChoice == 2)
+            ) {
+
+                System.out.println("Result: You Win!");
+                userScore++;
+
+            } else {
+
+                System.out.println("Result: Computer Wins!");
+                computerScore++;
+
+            }
+
+            System.out.println("\n--------- SCOREBOARD ---------");
+            System.out.println("Your Score: " + userScore);
+            System.out.println("Computer Score: " + computerScore);
+            System.out.println("------------------------------");
+
+        }
+
+        System.out.println("\n========== FINAL SCORE ==========");
+        System.out.println("Your Score: " + userScore);
+        System.out.println("Computer Score: " + computerScore);
+        System.out.println("Thanks for playing!");
+
+        scan.close();
+    }
+}
